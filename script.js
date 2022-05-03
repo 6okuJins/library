@@ -25,3 +25,25 @@ function addToArray() {
     myLibrary.push(newBook);
 
 }
+function addToGrid (book) {
+    const newCard = document.createElement("div");
+    const title = document.createElement("h1");
+    const author = document.createElement("p");
+    const pages = document.createElement("p");
+    const readButton = document.createElement("button");
+    const removeButton = document.createElement("button");
+
+    newCard.classList.add('book-card');
+    title.textContent = book.title;
+    author.textContent = book.author;
+    pages.textContent = book.pages;
+    (book.complete ? readButton.classList.add('read') : readButton.classList.add('unread'));
+    removeButton.classList.add('remove-button');
+    
+    libraryContainer.appendChild(newCard);
+    newCard.appendChild(title);
+    newCard.appendChild(author);
+    newCard.appendChild(pages);
+    newCard.appendChild(readButton);
+    newCard.appendChild(removeButton);
+}
