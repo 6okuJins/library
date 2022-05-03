@@ -34,11 +34,19 @@ function addToGrid (book) {
     const removeButton = document.createElement("button");
 
     newCard.classList.add('book-card');
-    title.textContent = book.title;
-    author.textContent = book.author;
-    pages.textContent = book.pages;
-    (book.complete ? readButton.classList.add('read') : readButton.classList.add('unread'));
+    title.textContent = `${book.title}`;
+    author.textContent = `by ${book.author}`;
+    pages.textContent = `${book.pages} pages`;
+    if (book.complete) {
+        readButton.classList.add('read');
+        readButton.textContent = "Read";
+    }
+    else {
+        readButton.classList.add('unread');
+        readButton.textContent = "Unread";
+    }
     removeButton.classList.add('remove-button');
+    removeButton.textContent = 'Remove';
     
     libraryContainer.appendChild(newCard);
     newCard.appendChild(title);
@@ -47,3 +55,6 @@ function addToGrid (book) {
     newCard.appendChild(readButton);
     newCard.appendChild(removeButton);
 }
+
+const test = new Book("Test", "auth", 12, true);
+addToGrid(test);
