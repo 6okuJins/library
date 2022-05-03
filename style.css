@@ -29,4 +29,28 @@ body {
     width: 70%;
     
 }
-.library-con
+.library-container .book-card {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+    border: 2px solid black;
+}
+.library-container .book-card h1 {
+    font-size: 50px;
+}
+.library-container .book-card p {
+    font-size: 30px;
+}
+.library-container .book-card button.read {
+    background-color: rgb(88, 232, 124);
+}
+.library-container .book-card button.unread {
+    background-color: rgb(249, 65, 65);
+}
+.library-container .book-card button.remove-button {
+    background-color: rgb(249, 65, 65);
+}
