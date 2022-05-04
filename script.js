@@ -23,6 +23,7 @@ function addToArray() {
 
     const newBook = new Book(title, author, pages, complete);
     myLibrary.push(newBook);
+    updateGrid();
 
 }
 function addToGrid (book) {
@@ -55,6 +56,20 @@ function addToGrid (book) {
     newCard.appendChild(readButton);
     newCard.appendChild(removeButton);
 }
+function clearGrid () {
+    while (libraryContainer.lastChild &&
+    !(libraryContainer.lastChild.textContent.includes('\n')) && libraryContainer.lastChild.classList.contains("book-card")) {
+        libraryContainer.removeChild(libraryContainer.lastChild);
+    }
+}
+function updateGrid () {
+    clearGrid();
+    for (book of myLibrary) {
+        addToGrid(book);
+    }
+}
 
+//TESTING
 const test = new Book("Test", "auth", 12, true);
+myLibrary.push(test);
 addToGrid(test);
