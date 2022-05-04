@@ -1,8 +1,23 @@
 const libraryContainer = document.querySelector(".library-container");
-const addButton = document.querySelector(".library-container .add-book")
+const addButton = document.querySelector(".library-container .add-book");
+const overlay = document.querySelector(".overlay");
+const modal = document.querySelector('.modal');
+const form = document.querySelector('form.modal');
+const submit = document.querySelector('#submit');
 let myLibrary = [];
 
-addButton.addEventListener("click", addToArray);
+addButton.addEventListener("click", () => overlay.classList.toggle('invisible'));
+overlay.addEventListener("click", () => {
+    form.reset();
+    overlay.classList.toggle('invisible');
+});
+modal.addEventListener('click', (e) => e.stopPropagation());    
+submit.addEventListener('click', (e) => {
+    e.preventDefault();
+    addToArray();
+    form.reset();
+    overlay.classList.toggle('invisible');
+});
 
 function Book(title, author, pages, complete) {
     this.title = title;
@@ -13,13 +28,13 @@ function Book(title, author, pages, complete) {
 
 Book.prototype.info = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${(this.complete ? "completed" : "not yet read")}.`
-}
+} 
 
 function addToArray() {
-    const title = prompt("Please enter the title:");
-    const author = prompt("Please enter the author:");
-    const pages = prompt("Please enter the number of pages:")
-    const complete = confirm("Have you finished reading this book?");
+    const title = document.querySelector("#title").value;
+    const author = document.querySelector("#author").value;
+    const pages = document.querySelector('#pages').value;
+    const complete = document.querySelector('#complete').checked;
 
     const newBook = new Book(title, author, pages, complete);
     myLibrary.push(newBook);
