@@ -1,10 +1,11 @@
+let myLibrary = [];
 const libraryContainer = document.querySelector(".library-container");
 const addButton = document.querySelector(".library-container .add-book");
 const overlay = document.querySelector(".overlay");
 const modal = document.querySelector('.modal');
 const form = document.querySelector('form.modal');
 const submit = document.querySelector('#submit');
-let myLibrary = [];
+
 
 addButton.addEventListener("click", () => overlay.classList.toggle('invisible'));
 overlay.addEventListener("click", () => {
@@ -39,6 +40,7 @@ function addToArray() {
     const newBook = new Book(title, author, pages, complete);
     myLibrary.push(newBook);
     updateGrid();
+    saveLocal();
 
 }
 function addToGrid (book) {
@@ -84,7 +86,13 @@ function updateGrid () {
     }
 }
 
-//TESTING
-const test = new Book("Test", "auth", 12, true);
-myLibrary.push(test);
-addToGrid(test);
+function saveLocal () {
+    localStorage.setItem('library', JSON.stringify(myLibrary))
+}
+(function loadLocal () {
+    const json = JSON.parse(localStorage.getItem('library'));
+    if (json) {
+        myLibrary = json.map((book) => new Book(book.title, book.author, book.pages, book.complete));
+        updateGrid();
+    }
+})();
