@@ -13,12 +13,14 @@
 <body ontouchstart="">
     <div class="overlay invisible">
         <div class="modal" id="add-book-modal">
-            <input type="text" name="title" id="title" placeholder="Title" maxlength="100" required>
-            <input type="text" name="author" id="author" placeholder="Author" maxlength="100" required>
-            <input type="number" name="pages" id="pages" placeholder="Number of pages" max="100000" required>
-            <span>Have you read it?</span>
-            <input type="checkbox" name="complete" id="complete">
-            <button type="submit" id="submit">Submit</button>
+            <form class="modal">
+                <input type="text" name="title" id="title" placeholder="Title" maxlength="100" required>
+                <input type="text" name="author" id="author" placeholder="Author" maxlength="100" required>
+                <input type="number" name="pages" id="pages" placeholder="Number of pages" max="100000" required>
+                <span>Have you read it?</span>
+                <input type="checkbox" name="complete" id="complete">
+                <button type="submit" id="submit">Submit</button>
+            </form>
         </div>
     </div>
     <div class="header">
