@@ -54,3 +54,33 @@ body {
 .library-container .book-card button.remove-button {
     background-color: rgb(249, 65, 65);
 }
+
+
+/* MODAL */
+.overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    background-color: rgba(0,0,0,0.7);
+}
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    gap: 10px;
+
+    background-color: white;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 20px;
+}
+.invisible {
+    display: none;
+}
