@@ -6,7 +6,6 @@ const modal = document.querySelector('.modal');
 const form = document.querySelector('form.modal');
 const submit = document.querySelector('#submit');
 
-
 addButton.addEventListener("click", () => overlay.classList.toggle('invisible'));
 overlay.addEventListener("click", () => {
     form.reset();
@@ -25,7 +24,9 @@ function Book(title, author, pages, complete) {
 Book.prototype.info = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${(this.complete ? "completed" : "not yet read")}.`
 } 
-
+Book.prototype.toggleStatus = function() {
+    this.complete = !this.complete;
+}
 function addToArray() {
     const title = document.querySelector("#title").value;
     const author = document.querySelector("#author").value;
@@ -41,6 +42,16 @@ function addToArray() {
     updateGrid();
     saveLocal();
 
+}
+function toggleStatus () {
+    myLibrary[this.parentNode.dataset.index].toggleStatus();
+    updateGrid();
+    saveLocal();
+}
+function removeFromArray () {
+    myLibrary.splice((this.parentNode.dataset.index), 1);
+    updateGrid();
+    saveLocal();
 }
 function addToGrid (book) {
     const newCard = document.createElement("div");
@@ -62,8 +73,10 @@ function addToGrid (book) {
         readButton.classList.add('unread');
         readButton.textContent = "Unread";
     }
+    readButton.addEventListener('click', toggleStatus);
     removeButton.classList.add('remove-button');
     removeButton.textContent = 'Remove';
+    removeButton.addEventListener('click', removeFromArray);
     
     libraryContainer.appendChild(newCard);
     newCard.appendChild(title);
