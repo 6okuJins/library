@@ -13,12 +13,7 @@ overlay.addEventListener("click", () => {
     overlay.classList.toggle('invisible');
 });
 modal.addEventListener('click', (e) => e.stopPropagation());    
-submit.addEventListener('click', (e) => {
-    e.preventDefault();
-    addToArray();
-    form.reset();
-    overlay.classList.toggle('invisible');
-});
+submit.addEventListener('click', (e) => addToArray());
 
 function Book(title, author, pages, complete) {
     this.title = title;
@@ -36,6 +31,10 @@ function addToArray() {
     const author = document.querySelector("#author").value;
     const pages = document.querySelector('#pages').value;
     const complete = document.querySelector('#complete').checked;
+    
+    if (!(title && author && pages)) {
+        return;
+    }
 
     const newBook = new Book(title, author, pages, complete);
     myLibrary.push(newBook);
