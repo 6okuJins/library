@@ -81,6 +81,15 @@ body {
     padding: 20px;
     border-radius: 20px;
 }
+.modal,
+.modal form {
+    transform: scale(1);
+    transition: transform 0.2s ease-in-out;
+}
 .invisible {
-    display: none;
+    transform: translate(0, -100%);
+}
+.invisible .modal,
+.invisible .modal form {
+    transform: scale(0);
 }
