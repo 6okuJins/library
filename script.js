@@ -72,6 +72,8 @@ function addToGrid (book) {
     newCard.appendChild(pages);
     newCard.appendChild(readButton);
     newCard.appendChild(removeButton);
+
+    return newCard;
 }
 function clearGrid () {
     while (libraryContainer.lastChild &&
@@ -81,8 +83,11 @@ function clearGrid () {
 }
 function updateGrid () {
     clearGrid();
+    let i = 0;
     for (book of myLibrary) {
-        addToGrid(book);
+        const bookCard = addToGrid(book);
+        bookCard.dataset.index = i;
+        i++;
     }
 }
 
